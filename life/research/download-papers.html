@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Research Papers &mdash; Napell Life</title>
+    <meta name="description" content="Download peer-reviewed research papers on acoustic frequency therapy for coffee cultivation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* ---- Download Contact Modal ---- */
+        .dl-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .dl-overlay.active { display: flex; }
+
+        .dl-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+        }
+
+        .dl-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 28px 18px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dl-modal-header h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .dl-paper-title {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .dl-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .dl-modal-close:hover { color: var(--text-primary); background: var(--bg-hover); }
+
+        .dl-modal-body { padding: 24px 28px 28px; }
+
+        .dl-field { margin-bottom: 18px; }
+        .dl-field label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .dl-field .required { color: var(--accent-blue); margin-left: 2px; }
+
+        .dl-input {
+            width: 100%;
+            padding: 11px 15px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.93rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .dl-input:focus { border-color: var(--accent-blue); }
+        .dl-input::placeholder { color: var(--text-tertiary); }
+
+        .dl-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .dl-submit {
+            width: 100%;
+            margin-top: 8px;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 13px 24px;
+        }
+
+        .dl-note {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .dl-success {
+            display: none;
+            text-align: center;
+            padding: 32px 24px;
+        }
+        .dl-success-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        .dl-success h3 { margin-bottom: 12px; }
+        .dl-success p { color: var(--text-secondary); margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <div class="nav-logo">N</div>
+                Napell Life
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Product <span class="nav-arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="../soundscapes/index.html" class="dropdown-item">
+                            <span class="dropdown-icon amber">&#127925;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Soundscapes</span>
+                                <span class="dropdown-desc">Curated acoustic environments</span>
+                            </span>
+                        </a>
+                        <a href="../music-platform/index.html" class="dropdown-item">
+                            <span class="dropdown-icon green">&#127911;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Music Platform</span>
+                                <span class="dropdown-desc">Stream custom frequency protocols</span>
+                            </span>
+                        </a>
+                        <a href="../device-gateway/index.html" class="dropdown-item">
+                            <span class="dropdown-icon blue">&#9881;&#65039;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Device Gateway</span>
+                                <span class="dropdown-desc">IoT hardware controllers</span>
+                            </span>
+                        </a>
+                        <div style="height:1px;background:var(--border-color);margin:4px 0;"></div>
+                        <a href="../api/index.html" class="dropdown-item">
+                            <span class="dropdown-icon violet">&lt;/&gt;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Developer API</span>
+                                <span class="dropdown-desc">RESTful &amp; WebSocket APIs</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../research/download-papers.html" class="nav-link active">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pricing/index.html" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../community/index.html" class="nav-link">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact/index.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../get-started/index.html" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    4 Peer-Reviewed Publications
+                </div>
+                <h1>Research<br><em>Papers</em></h1>
+                <p>Access our complete library of peer-reviewed studies on acoustic frequency therapy for coffee cultivation. Free to download and share.</p>
+            </div>
+        </section>
+
+        <!-- ==================== PAPERS LIST ==================== -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Research</span>
+                <h2>Peer-Reviewed Publications</h2>
+                <p class="section-desc">Download the latest research validating the science behind sound-grown coffee. Please provide your details to access each paper.</p>
+
+                <div style="margin-top: 48px;">
+
+                    <!-- Paper 1 -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 280px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="background: rgba(29,155,240,0.12); color: var(--accent-blue); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">2024</span>
+                                    <span style="color: var(--text-tertiary); font-size: 0.8rem;">Journal of Agricultural Science</span>
+                                </div>
+                                <h3>Acoustic Frequency Effects on <em style="font-style: italic; font-weight: 700;">Coffea arabica</em> Growth</h3>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">Demonstrates how 500Hz acoustic treatment increases germination rates by +22% and stem diameter by +14.3% through mechanosensitive ion channel activation.</p>
+                                <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                                    <span class="card-tag">PDF &mdash; 12 pages</span>
+                                    <span class="card-tag" style="background: rgba(0,186,124,0.1); color: var(--accent-green);">Open Access</span>
+                                </div>
+                            </div>
+                            <button onclick="openDownloadModal('Acoustic Frequency Effects on Coffea arabica Growth', 'paper-1')" class="btn btn-primary" style="white-space: nowrap; align-self: center;">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Paper 2 -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 280px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="background: rgba(29,155,240,0.12); color: var(--accent-blue); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">2025</span>
+                                    <span style="color: var(--text-tertiary); font-size: 0.8rem;">Nature Plants</span>
+                                </div>
+                                <h3>Mechanotransduction in Plant Acoustic Response</h3>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">Reveals the molecular mechanisms behind plant response to acoustic waves through MSL protein activation and calcium ion signaling cascades.</p>
+                                <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                                    <span class="card-tag">PDF &mdash; 18 pages</span>
+                                    <span class="card-tag" style="background: rgba(0,186,124,0.1); color: var(--accent-green);">Open Access</span>
+                                </div>
+                            </div>
+                            <button onclick="openDownloadModal('Mechanotransduction in Plant Acoustic Response', 'paper-2')" class="btn btn-primary" style="white-space: nowrap; align-self: center;">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Paper 3 -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 280px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="background: rgba(29,155,240,0.12); color: var(--accent-blue); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">2025</span>
+                                    <span style="color: var(--text-tertiary); font-size: 0.8rem;">Food Chemistry</span>
+                                </div>
+                                <h3>Flavor Enhancement Through Acoustic Treatment</h3>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">Documents +18.5% increase in sucrose concentration and +23% boost in aromatic volatiles in acoustically-treated coffee cherries across three cultivars.</p>
+                                <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                                    <span class="card-tag">PDF &mdash; 24 pages</span>
+                                    <span class="card-tag" style="background: rgba(0,186,124,0.1); color: var(--accent-green);">Open Access</span>
+                                </div>
+                            </div>
+                            <button onclick="openDownloadModal('Flavor Enhancement Through Acoustic Treatment', 'paper-3')" class="btn btn-primary" style="white-space: nowrap; align-self: center;">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Paper 4 -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 280px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <span style="background: rgba(29,155,240,0.12); color: var(--accent-blue); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">2026</span>
+                                    <span style="color: var(--text-tertiary); font-size: 0.8rem;">Plant Pathology</span>
+                                </div>
+                                <h3>Disease Resistance in Acoustic-Treated Coffee</h3>
+                                <p style="margin-top: 10px; font-size: 0.9rem;">Shows acoustic frequency therapy reduces coffee leaf rust incidence by -31.2% through strengthened plant immunity pathways and improved cellular defenses.</p>
+                                <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+                                    <span class="card-tag">PDF &mdash; 16 pages</span>
+                                    <span class="card-tag" style="background: rgba(0,186,124,0.1); color: var(--accent-green);">Open Access</span>
+                                </div>
+                            </div>
+                            <button onclick="openDownloadModal('Disease Resistance in Acoustic-Treated Coffee', 'paper-4')" class="btn btn-primary" style="white-space: nowrap; align-self: center;">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CTA ==================== -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Want to Contribute?</h2>
+                <p>We welcome collaborative research. If you&rsquo;re conducting studies on acoustic agriculture, let&rsquo;s connect.</p>
+                <a href="../contact/index.html" class="btn btn-primary">Contact Our Research Team</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Napell Life</h3>
+                    <p>Sound-Grown Coffee Science. Using acoustic frequency therapy to revolutionize coffee cultivation &mdash; backed by peer-reviewed research.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="../soundscapes/index.html">Soundscapes</a>
+                    <a href="../music-platform/index.html">Music Platform</a>
+                    <a href="../device-gateway/index.html">Device Gateway</a>
+                    <a href="../api/index.html">API</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="../research/download-papers.html">Research</a>
+                    <a href="../pricing/index.html">Pricing</a>
+                    <a href="../community/index.html">Community</a>
+                    <a href="../contact/index.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="../legal/terms-of-service.html">Terms of Service</a>
+                    <a href="../legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Napell Life. All rights reserved.</span>
+                <span>www.napell.life</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== DOWNLOAD CONTACT MODAL ==================== -->
+    <div class="dl-overlay" id="dl-overlay">
+        <div class="dl-modal" role="dialog" aria-modal="true" aria-labelledby="dl-modal-title">
+            <!-- Form view -->
+            <div id="dl-form-view">
+                <div class="dl-modal-header">
+                    <div>
+                        <h3 id="dl-modal-title">Access Research Paper</h3>
+                        <div class="dl-paper-title" id="dl-paper-name"></div>
+                    </div>
+                    <button class="dl-modal-close" onclick="closeDownloadModal()" aria-label="Close">&times;</button>
+                </div>
+                <div class="dl-modal-body">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 22px; line-height: 1.6;">Please fill in your details below to access the full research paper. Your information helps us improve our research outreach.</p>
+
+                    <form id="dl-form" onsubmit="handleDownloadSubmit(event)" novalidate>
+                        <input type="hidden" id="dl-paper-id" value="">
+
+                        <div class="dl-row">
+                            <div class="dl-field">
+                                <label>First Name <span class="required">*</span></label>
+                                <input type="text" class="dl-input" id="dl-first-name" placeholder="John" required>
+                            </div>
+                            <div class="dl-field">
+                                <label>Last Name <span class="required">*</span></label>
+                                <input type="text" class="dl-input" id="dl-last-name" placeholder="Smith" required>
+                            </div>
+                        </div>
+
+                        <div class="dl-field">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" class="dl-input" id="dl-email" placeholder="john@farm.com" required>
+                        </div>
+
+                        <div class="dl-row">
+                            <div class="dl-field">
+                                <label>WhatsApp Number</label>
+                                <input type="tel" class="dl-input" id="dl-whatsapp" placeholder="+1 234 567 8900">
+                            </div>
+                            <div class="dl-field">
+                                <label>WeChat ID</label>
+                                <input type="text" class="dl-input" id="dl-wechat" placeholder="wechat_id">
+                            </div>
+                        </div>
+
+                        <div class="dl-field">
+                            <label>Organization / Farm Name</label>
+                            <input type="text" class="dl-input" id="dl-org" placeholder="Green Valley Coffee Farm">
+                        </div>
+
+                        <div class="dl-field">
+                            <label>Download Purpose <span class="required">*</span></label>
+                            <select class="dl-input" id="dl-purpose" required>
+                                <option value="" disabled selected>Select a purpose</option>
+                                <option value="academic">Academic / Research</option>
+                                <option value="farm">Farm Application</option>
+                                <option value="business">Business / Commercial Use</option>
+                                <option value="press">Press / Media</option>
+                                <option value="education">Education / Teaching</option>
+                                <option value="personal">Personal Interest</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="dl-field">
+                            <label>Country / Region</label>
+                            <input type="text" class="dl-input" id="dl-country" placeholder="e.g. Ethiopia, Brazil, Vietnam">
+                        </div>
+
+                        <div class="dl-field">
+                            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-weight: 400; font-size: 0.85rem; color: var(--text-tertiary);">
+                                <input type="checkbox" id="dl-newsletter" style="margin-top: 2px; cursor: pointer; flex-shrink: 0;">
+                                <span>I&rsquo;d like to receive research updates and newsletters from Napell Life</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary dl-submit">
+                            Download Paper &mdash; Free
+                        </button>
+                        <p class="dl-note">By downloading you agree to our <a href="../legal/terms-of-service.html" style="color: var(--accent-blue);">Terms of Service</a> and <a href="../legal/privacy-policy.html" style="color: var(--accent-blue);">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Success view -->
+            <div class="dl-success" id="dl-success-view">
+                <div class="dl-success-icon">&#10003;</div>
+                <h3>Your Download is Ready</h3>
+                <p>Thank you! Your research paper is now downloading. We&rsquo;ll also send a copy to your email address.</p>
+                <button onclick="closeDownloadModal()" class="btn btn-primary" style="margin: 0 auto;">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        var currentPaperId = '';
+
+        function openDownloadModal(paperTitle, paperId) {
+            currentPaperId = paperId;
+            document.getElementById('dl-paper-name').textContent = paperTitle;
+            document.getElementById('dl-paper-id').value = paperId;
+            document.getElementById('dl-form-view').style.display = '';
+            document.getElementById('dl-success-view').style.display = 'none';
+            document.getElementById('dl-form').reset();
+            document.getElementById('dl-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDownloadModal() {
+            document.getElementById('dl-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleDownloadSubmit(e) {
+            e.preventDefault();
+            var firstName = document.getElementById('dl-first-name').value.trim();
+            var lastName  = document.getElementById('dl-last-name').value.trim();
+            var email     = document.getElementById('dl-email').value.trim();
+            var purpose   = document.getElementById('dl-purpose').value;
+
+            if (!firstName || !lastName || !email || !purpose) {
+                alert('Please fill in all required fields (marked with *).');
+                return;
+            }
+
+            // Here you would POST to your backend / CRM
+            // For now we simulate a successful submission
+            document.getElementById('dl-form-view').style.display = 'none';
+            var successView = document.getElementById('dl-success-view');
+            successView.style.display = 'block';
+
+            // Change the checkmark to a green circle icon
+            successView.querySelector('.dl-success-icon').style.cssText =
+                'font-size:3rem;margin-bottom:16px;color:var(--accent-green);';
+        }
+
+        // Close on overlay click
+        document.getElementById('dl-overlay').addEventListener('click', function(e) {
+            if (e.target === this) { closeDownloadModal(); }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeDownloadModal(); }
+        });
+    </script>
+</body>
+</html>

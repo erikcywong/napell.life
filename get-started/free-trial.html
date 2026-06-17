@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Free Trial &mdash; Napell Life</title>
+    <meta name="description" content="Start your free 14-day trial of Napell Life's acoustic frequency therapy platform. No credit card required.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <div class="nav-logo">N</div>
+                Napell Life
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Product <span class="nav-arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="../soundscapes/index.html" class="dropdown-item">
+                            <span class="dropdown-icon amber">&#9835;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Soundscapes</span>
+                                <span class="dropdown-desc">Curated acoustic environments</span>
+                            </span>
+                        </a>
+                        <a href="../music-platform/index.html" class="dropdown-item">
+                            <span class="dropdown-icon green">&#9836;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Music Platform</span>
+                                <span class="dropdown-desc">Stream custom frequency protocols</span>
+                            </span>
+                        </a>
+                        <a href="../device-gateway/index.html" class="dropdown-item">
+                            <span class="dropdown-icon blue">&#9881;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Device Gateway</span>
+                                <span class="dropdown-desc">IoT hardware controllers</span>
+                            </span>
+                        </a>
+                        <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+                        <a href="../api/index.html" class="dropdown-item">
+                            <span class="dropdown-icon violet">&lt;/&gt;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Developer API</span>
+                                <span class="dropdown-desc">RESTful &amp; WebSocket APIs</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../research/download-papers.html" class="nav-link">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pricing/index.html" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../community/index.html" class="nav-link">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact/index.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../get-started/index.html" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Start Your Free<br><em>Trial</em></h1>
+                <p>Experience the power of acoustic frequency therapy for 14 days. No credit card required. Full access to all features.</p>
+            </div>
+        </section>
+
+        <!-- ==================== TRIAL FORM ==================== -->
+        <section class="section">
+            <div class="container">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div class="card">
+                        <h3 style="margin-bottom: 24px; text-align: center;">Create Your Free Account</h3>
+                        <form id="trial-form" onsubmit="handleTrialSubmit(event)">
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Full Name</label>
+                                <input type="text" placeholder="John Smith" style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); box-sizing: border-box;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Email Address</label>
+                                <input type="email" placeholder="john@farm.com" style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); box-sizing: border-box;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Farm Size (hectares)</label>
+                                <input type="number" placeholder="10" style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); box-sizing: border-box;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                            </div>
+                            <div style="margin-bottom: 24px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Primary Interest</label>
+                                <select style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); cursor: pointer; box-sizing: border-box;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                                    <option>Select an option</option>
+                                    <option>Soundscapes for Growth</option>
+                                    <option>Music Platform Streaming</option>
+                                    <option>Device Gateway IoT</option>
+                                    <option>Developer API Access</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px 24px;">Start Free Trial</button>
+                        </form>
+                        <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--text-tertiary);">No credit card required. Cancel anytime.</p>
+                    </div>
+
+                    <div style="margin-top: 32px; text-align: center;">
+                        <h3 style="margin-bottom: 16px;">What&#39;s Included</h3>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: var(--accent-green); font-size: 1.2rem;">&#10003;</span>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">14 days free access</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: var(--accent-green); font-size: 1.2rem;">&#10003;</span>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Up to 5 acoustic zones</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: var(--accent-green); font-size: 1.2rem;">&#10003;</span>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Full soundscape library</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span style="color: var(--accent-green); font-size: 1.2rem;">&#10003;</span>
+                                <span style="color: var(--text-secondary); font-size: 0.95rem;">Email &amp; chat support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Napell Life</h3>
+                    <p>Sound-Grown Coffee Science. Using acoustic frequency therapy to revolutionize coffee cultivation &mdash; backed by peer-reviewed research.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="../soundscapes/index.html">Soundscapes</a>
+                    <a href="../music-platform/index.html">Music Platform</a>
+                    <a href="../device-gateway/index.html">Device Gateway</a>
+                    <a href="../api/index.html">API</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="../research/download-papers.html">Research</a>
+                    <a href="../pricing/index.html">Pricing</a>
+                    <a href="../community/index.html">Community</a>
+                    <a href="../contact/index.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="../legal/terms-of-service.html">Terms of Service</a>
+                    <a href="../legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Napell Life. All rights reserved.</span>
+                <span>www.napell.life</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleTrialSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! Your free trial account is being set up. Check your email for login instructions.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Free &mdash;Napell Life</title>
+    <meta name="description" content="Join the Napell Life community for free. Connect with growers, researchers, and acoustic agriculture enthusiasts worldwide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <div class="nav-logo">N</div>
+                Napell Life
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Product <span class="nav-arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="../soundscapes/index.html" class="dropdown-item">
+                            <span class="dropdown-icon amber">🎵</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Soundscapes</span>
+                                <span class="dropdown-desc">Curated acoustic environments</span>
+                            </span>
+                        </a>
+                        <a href="../music-platform/index.html" class="dropdown-item">
+                            <span class="dropdown-icon green">🎧</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Music Platform</span>
+                                <span class="dropdown-desc">Stream custom frequency protocols</span>
+                            </span>
+                        </a>
+                        <a href="../device-gateway/index.html" class="dropdown-item">
+                            <span class="dropdown-icon blue">⚙️</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Device Gateway</span>
+                                <span class="dropdown-desc">IoT hardware controllers</span>
+                            </span>
+                        </a>
+                        <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+                        <a href="../api/index.html" class="dropdown-item">
+                            <span class="dropdown-icon violet">&lt;/&gt;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Developer API</span>
+                                <span class="dropdown-desc">RESTful & WebSocket APIs</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="../research/download-papers.html" class="nav-link">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../pricing/index.html" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../community/index.html" class="nav-link">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../contact/index.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="../get-started/index.html" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Join Our<br><em>Community</em></h1>
+                <p>Connect with 1,247+ coffee growers, researchers, and acoustic agriculture enthusiasts from 40+ countries. Free to join.</p>
+            </div>
+        </section>
+
+        <!-- ==================== COMMUNITY BENEFITS ==================== -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Community</span>
+                <h2>Why Join?</h2>
+                <p class="section-desc">Get access to exclusive resources, connect with experts, and share your acoustic agriculture journey.</p>
+
+                <div class="card-grid" style="margin-top: 48px;">
+                    <div class="card fade-in">
+                        <div class="card-icon">👥</div>
+                        <h3>Grower Forum</h3>
+                        <p>Share results, troubleshoot issues, and learn from experienced sound-grown coffee farmers across 40+ countries.</p>
+                        <span class="card-tag">1,247+ Farms</span>
+                    </div>
+                    <div class="card fade-in">
+                        <div class="card-icon">🏆</div>
+                        <h3>Creator Program</h3>
+                        <p>Build custom soundscapes, share protocols, and earn revenue from your acoustic innovations within the Napell marketplace.</p>
+                        <span class="card-tag">Revenue Share</span>
+                    </div>
+                    <div class="card fade-in">
+                        <div class="card-icon">🌳</div>
+                        <h3>Adopt-a-Tree</h3>
+                        <p>Sponsor acoustic-treated coffee trees in developing regions. Track your impact with real-time growth data and harvest reports.</p>
+                        <span class="card-tag">Track Impact</span>
+                    </div>
+                    <div class="card fade-in">
+                        <div class="card-icon">📚</div>
+                        <h3>Knowledge Base</h3>
+                        <p>Access exclusive guides, tutorials, and best practices for implementing acoustic frequency therapy on your farm.</p>
+                        <span class="card-tag">Free Resources</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SIGNUP FORM ==================== -->
+        <section class="section">
+            <div class="container">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div class="card">
+                        <h3 style="margin-bottom: 24px; text-align: center;">Join for Free</h3>
+                        <form id="join-form" onsubmit="handleJoinSubmit(event)">
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Display Name</label>
+                                <input type="text" placeholder="John S." style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition);" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">Email Address</label>
+                                <input type="email" placeholder="john@farm.com" style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition);" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-secondary);">I am a...</label>
+                                <select style="width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-sans); outline: none; transition: var(--transition); cursor: pointer;" onfocus="this.style.borderColor='var(--accent-blue)'" onblur="this.style.borderColor='var(--border-color)'">
+                                    <option>Select an option</option>
+                                    <option>Coffee Farmer</option>
+                                    <option>Researcher</option>
+                                    <option>Agricultural Consultant</option>
+                                    <option>Enthusiast</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 24px;">
+                                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.9rem; color: var(--text-secondary);">
+                                    <input type="checkbox" style="margin-top: 2px; cursor: pointer;">
+                                    <span>I agree to receive community updates and newsletters</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px 24px;">Join Community</button>
+                        </form>
+                        <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: var(--text-tertiary);">Free forever. No spam. Unsubscribe anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Napell Life</h3>
+                    <p>Sound-Grown Coffee Science. Using acoustic frequency therapy to revolutionize coffee cultivation &mdash;backed by peer-reviewed research.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="../soundscapes/index.html">Soundscapes</a>
+                    <a href="../music-platform/index.html">Music Platform</a>
+                    <a href="../device-gateway/index.html">Device Gateway</a>
+                    <a href="../api/index.html">API</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="../research/download-papers.html">Research</a>
+                    <a href="../pricing/index.html">Pricing</a>
+                    <a href="../community/index.html">Community</a>
+                    <a href="../contact/index.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="../legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="../legal/terms-of-service.html">Terms of Service</a>
+                    <a href="../legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Napell Life. All rights reserved.</span>
+                <span>www.napell.life</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleJoinSubmit(event) {
+            event.preventDefault();
+            alert('Welcome to the Napell Life community! Check your email to verify your account and get started.');
+        }
+    </script>
+</body>
+</html>

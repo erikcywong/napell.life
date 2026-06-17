@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Napell Life &mdash; Sound-Grown Coffee Science</title>
+    <meta name="description" content="Napell Life uses acoustic frequency therapy to accelerate Coffea arabica growth, unlock complex flavor profiles, and increase yield &mdash; without chemicals.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <div class="nav-logo">N</div>
+                Napell Life
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Product <span class="nav-arrow">&#9660;</span></a>
+                    <div class="dropdown">
+                        <a href="soundscapes/index.html" class="dropdown-item">
+                            <span class="dropdown-icon amber">&#127925;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Soundscapes</span>
+                                <span class="dropdown-desc">Curated acoustic environments</span>
+                            </span>
+                        </a>
+                        <a href="music-platform/index.html" class="dropdown-item">
+                            <span class="dropdown-icon green">&#127911;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Music Platform</span>
+                                <span class="dropdown-desc">Stream custom frequency protocols</span>
+                            </span>
+                        </a>
+                        <a href="device-gateway/index.html" class="dropdown-item">
+                            <span class="dropdown-icon blue">&#9881;&#65039;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Device Gateway</span>
+                                <span class="dropdown-desc">IoT hardware controllers</span>
+                            </span>
+                        </a>
+                        <div style="height: 1px; background: var(--border-color); margin: 4px 0;"></div>
+                        <a href="api/index.html" class="dropdown-item">
+                            <span class="dropdown-icon violet">&lt;/&gt;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Developer API</span>
+                                <span class="dropdown-desc">RESTful &amp; WebSocket APIs</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="research/download-papers.html" class="nav-link">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pricing/index.html" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="community/index.html" class="nav-link">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact/index.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="get-started/index.html" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Backed by 4 peer-reviewed studies
+                </div>
+                <h1>Sound-Grown Coffee.<br>Science Meets <em>Acoustics</em>.</h1>
+                <p>Using acoustic frequency therapy to accelerate <em style="color: var(--accent-amber); font-style: normal;">Coffea arabica</em> growth, unlock complex flavor profiles, and increase yield &mdash; without chemicals. Rooted in plant biology, refined by sound.</p>
+                <div class="hero-actions">
+                    <a href="research/download-papers.html" class="btn btn-primary">Download Research Papers</a>
+                    <a href="get-started/free-trial.html" class="btn btn-outline">Start Free Trial</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== KPI DASHBOARD ==================== -->
+        <section class="section" id="metrics">
+            <div class="container">
+                <span class="section-label">Metrics</span>
+                <h2>Proven Results</h2>
+                <p class="section-desc">Field-tested across 40+ countries. Our acoustic treatments deliver measurable improvements in coffee plant health and yield.</p>
+                <div class="kpi-grid">
+                    <div class="kpi-card" onclick="openModal('flavor')">
+                        <div class="kpi-label">Flavor Enhancement</div>
+                        <div class="kpi-value green">+18.5%</div>
+                        <div class="kpi-change up">&#8593; Sucrose &amp; aromatics</div>
+                    </div>
+                    <div class="kpi-card" onclick="openModal('growth')">
+                        <div class="kpi-label">Growth Rate</div>
+                        <div class="kpi-value blue">+14.3%</div>
+                        <div class="kpi-change up">&#8593; Stem elongation</div>
+                    </div>
+                    <div class="kpi-card" onclick="openModal('yield')">
+                        <div class="kpi-label">Yield Increase</div>
+                        <div class="kpi-value amber">+17.8%</div>
+                        <div class="kpi-change up">&#8593; Fruit production</div>
+                    </div>
+                    <div class="kpi-card" onclick="openModal('disease')">
+                        <div class="kpi-label">Disease Resistance</div>
+                        <div class="kpi-value rose">-31.2%</div>
+                        <div class="kpi-change down">&#8595; Leaf rust incidence</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== HOW IT WORKS ==================== -->
+        <section class="section" id="mechanisms">
+            <div class="container">
+                <span class="section-label">Technology</span>
+                <h2>Sound as a Growth Catalyst</h2>
+                <p class="section-desc">Specific frequencies stimulate mechanosensitive ion channels in plant cells, triggering calcium signaling cascades that enhance nutrient uptake, photosynthetic efficiency, and secondary metabolite synthesis &mdash; all validated in controlled field trials.</p>
+                <div class="card-grid">
+                    <div class="card fade-in" onclick="openModal('mechanotransduction')">
+                        <div class="card-icon">&#128299;</div>
+                        <h3>Mechanotransduction</h3>
+                        <p>Acoustic waves activate plant mechanoreceptors, converting mechanical energy into biochemical signals that regulate gene expression.</p>
+                        <span class="card-tag">Molecular</span>
+                    </div>
+                    <div class="card fade-in" onclick="openModal('results')">
+                        <div class="card-icon">&#128200;</div>
+                        <h3>Quantifiable Results</h3>
+                        <p>Field data: 500Hz boosts germination +22%. Mozart K.525 increases stem diameter +14.3%. 1kHz chirps improve fruit set +19%.</p>
+                        <span class="card-tag">Data-Driven</span>
+                    </div>
+                    <div class="card fade-in" onclick="openModal('ai')">
+                        <div class="card-icon">&#127807;</div>
+                        <h3>AI-Powered Models</h3>
+                        <p>Our ML models predict optimal frequency windows for any coffee cultivar, environment, and growth stage combination.</p>
+                        <span class="card-tag">Predictive</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PRODUCT ECOSYSTEM ==================== -->
+        <section class="section" id="product">
+            <div class="container">
+                <span class="section-label">Products</span>
+                <h2>Everything You Need</h2>
+                <p class="section-desc">From curated soundscapes to developer APIs, Napell provides a complete technology stack for sound-grown agriculture.</p>
+                <div class="card-grid">
+                    <a href="soundscapes/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#127925;</div>
+                        <h3>Soundscapes</h3>
+                        <p>Curated acoustic environments for germination, vegetative growth, flowering, and fruiting stages.</p>
+                        <span class="card-tag">4 Stages</span>
+                    </a>
+                    <a href="music-platform/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#127911;</div>
+                        <h3>Music Platform</h3>
+                        <p>Stream or upload custom frequency protocols. Schedule playback across your entire farm infrastructure.</p>
+                        <span class="card-tag">Streaming</span>
+                    </a>
+                    <a href="device-gateway/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#9881;</div>
+                        <h3>Device Gateway</h3>
+                        <p>IoT hardware controllers that connect speakers, sensors, and environmental monitors into one unified system.</p>
+                        <span class="card-tag">IoT</span>
+                    </a>
+                    <a href="api/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&lt;/&gt;</div>
+                        <h3>Developer API</h3>
+                        <p>RESTful &amp; WebSocket APIs to integrate acoustic protocols into your own farm management software.</p>
+                        <span class="card-tag">Open</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PRICING ==================== -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <span class="section-label">Pricing</span>
+                <h2>Choose Your Plan</h2>
+                <p class="section-desc">Flexible plans designed for farms of every size, from single operators to enterprise operations.</p>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Starter</h3>
+                        <div class="price-amount">$29</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>Up to 2 acoustic zones</li>
+                            <li>Basic soundscapes</li>
+                            <li>Mobile app access</li>
+                            <li>Email support</li>
+                        </ul>
+                        <a href="get-started/index.html" class="btn btn-outline">Get Started</a>
+                    </div>
+                    <div class="price-card featured">
+                        <h3>Pro</h3>
+                        <div class="price-amount">$99</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>10 acoustic zones</li>
+                            <li>Full soundscape library</li>
+                            <li>Device Gateway integration</li>
+                            <li>Analytics dashboard</li>
+                            <li>Priority support</li>
+                        </ul>
+                        <a href="get-started/index.html" class="btn btn-primary">Get Started</a>
+                    </div>
+                    <div class="price-card">
+                        <h3>Business</h3>
+                        <div class="price-amount">$299</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>Unlimited zones</li>
+                            <li>Custom frequency protocols</li>
+                            <li>API access</li>
+                            <li>ML optimization</li>
+                            <li>Dedicated account manager</li>
+                        </ul>
+                        <a href="get-started/index.html" class="btn btn-outline">Get Started</a>
+                    </div>
+                    <div class="price-card">
+                        <h3>Enterprise</h3>
+                        <div class="price-amount">Custom</div>
+                        <div class="price-period">contact us</div>
+                        <ul class="price-features">
+                            <li>White-label solutions</li>
+                            <li>On-premise deployment</li>
+                            <li>Custom ML models</li>
+                            <li>SLA guarantees</li>
+                            <li>24/7 support</li>
+                        </ul>
+                        <a href="contact/index.html" class="btn btn-outline">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== COMMUNITY ==================== -->
+        <section class="section" id="community">
+            <div class="container">
+                <span class="section-label">Community</span>
+                <h2>Join the Movement</h2>
+                <p class="section-desc">Connect with fellow growers, researchers, and acoustic agriculture enthusiasts from around the world.</p>
+                <div class="card-grid">
+                    <a href="community/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#128101;</div>
+                        <h3>Grower Forum</h3>
+                        <p>Share results, troubleshoot issues, and learn from experienced sound-grown coffee farmers across 40+ countries.</p>
+                        <span class="card-tag">1,247+ Farms</span>
+                    </a>
+                    <a href="community/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#127959;</div>
+                        <h3>Creator Program</h3>
+                        <p>Build custom soundscapes, share protocols, and earn revenue from your acoustic innovations within the Napell marketplace.</p>
+                        <span class="card-tag">Revenue Share</span>
+                    </a>
+                    <a href="community/index.html" class="card fade-in" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#127795;</div>
+                        <h3>Adopt-a-Tree</h3>
+                        <p>Sponsor acoustic-treated coffee trees in developing regions. Track your impact with real-time growth data and harvest reports.</p>
+                        <span class="card-tag">Track Impact</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CTA ==================== -->
+        <section class="cta-section" id="get-started">
+            <div class="container">
+                <h2>Ready to Transform Your Farm?</h2>
+                <p>Join 1,247+ farms already using acoustic frequency therapy to grow better coffee &mdash; sustainably.</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="get-started/free-trial.html" class="btn btn-primary">Start Free Trial</a>
+                    <a href="community/join-free.html" class="btn btn-outline">Join Free</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT ==================== -->
+        <section class="section" id="contact">
+            <div class="container">
+                <span class="section-label">Contact</span>
+                <h2>Get in Touch</h2>
+                <p class="section-desc">For partnerships, media inquiries, or technical support, reach out below.</p>
+                <div class="card-grid">
+                    <a href="https://wa.me/85293188252" class="card" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#128172;</div>
+                        <h3>WhatsApp</h3>
+                        <p>+852 9318 8252</p>
+                    </a>
+                    <a href="#" class="card" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#128140;</div>
+                        <h3>WeChat</h3>
+                        <p>+86 15800 222338</p>
+                    </a>
+                    <a href="mailto:erik.wong@napell.life" class="card" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="card-icon">&#9993;</div>
+                        <h3>Email</h3>
+                        <p>erik.wong@napell.life</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Napell Life</h3>
+                    <p>Sound-Grown Coffee Science. Using acoustic frequency therapy to revolutionize coffee cultivation &mdash; backed by peer-reviewed research.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="soundscapes/index.html">Soundscapes</a>
+                    <a href="music-platform/index.html">Music Platform</a>
+                    <a href="device-gateway/index.html">Device Gateway</a>
+                    <a href="api/index.html">API</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="research/download-papers.html">Research</a>
+                    <a href="pricing/index.html">Pricing</a>
+                    <a href="community/index.html">Community</a>
+                    <a href="contact/index.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="legal/privacy-policy.html">Privacy Policy</a>
+                    <a href="legal/terms-of-service.html">Terms of Service</a>
+                    <a href="legal/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Napell Life. All rights reserved.</span>
+                <span>www.napell.life</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL ==================== -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Details</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        function openModal(type) {
+            const overlay = document.getElementById('modal-overlay');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            const content = {
+                flavor: {
+                    title: 'Flavor Enhancement',
+                    body: 'Acoustic treatment increases sucrose concentration by +18.5% and aromatic volatile compounds by +23% in ripening coffee cherries. Sound frequencies stimulate secondary metabolite synthesis pathways.'
+                },
+                growth: {
+                    title: 'Growth Rate',
+                    body: 'Mozart K.525 classical treatment increases stem diameter by +14.3% through mechanosensitive ion channel activation.'
+                },
+                yield: {
+                    title: 'Yield Increase',
+                    body: '1kHz acoustic chirps improve fruit set rate by +19%, translating to significantly higher harvest volumes per hectare.'
+                },
+                disease: {
+                    title: 'Disease Resistance',
+                    body: 'Acoustic treatment reduces coffee leaf rust incidence by -31.2% by strengthening plant immune pathways through calcium signaling.'
+                },
+                mechanotransduction: {
+                    title: 'Mechanotransduction',
+                    body: 'Acoustic waves activate plant mechanoreceptors, converting mechanical energy into biochemical signals that regulate gene expression. This triggers calcium ion influx through MSL proteins.'
+                },
+                results: {
+                    title: 'Quantifiable Results',
+                    body: 'Field data from 40+ countries confirms: 500Hz boosts germination +22%, Mozart K.525 increases stem diameter +14.3%, and 1kHz chirps improve fruit set +19%.'
+                },
+                ai: {
+                    title: 'AI-Powered Models',
+                    body: 'Our ML models achieve R\u00b2=0.91 for growth prediction and R\u00b2=0.87 for optimal frequency selection. Trained on 24,000+ field observations.'
+                }
+            };
+
+            if (content[type]) {
+                title.textContent = content[type].title;
+                body.innerHTML = '<p style="color: var(--text-secondary); line-height: 1.7;">' + content[type].body + '</p>';
+                overlay.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) { closeModal(); }
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                nav.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+            }
+        });
+    </script>
+</body>
+</html>

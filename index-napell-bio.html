@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAPELL BIO — Carbon-Neutral Coffee · Zero-Carbon Future</title>
+    <meta name="description" content="NAPELL BIO revolutionizes the global coffee supply chain with tissue culture and aeroponic technology — achieving unprecedented carbon reduction and water conservation.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #030712;
+            --bg-card: #0f172a;
+            --bg-card-hover: #1e293b;
+            --bg-nav: rgba(3, 7, 18, 0.88);
+            --bg-dropdown: #0f172a;
+            --border: #1e293b;
+            --border-light: #334155;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --white: #ffffff;
+            --emerald: #34d399;
+            --emerald-dark: #059669;
+            --sky: #38bdf8;
+            --sky-dark: #0284c7;
+            --amber: #fbbf24;
+            --amber-dark: #d97706;
+            --rose: #fb7185;
+            --rose-dark: #e11d48;
+            --violet: #a78bfa;
+            --violet-dark: #7c3aed;
+            --teal: #2dd4bf;
+            --teal-dark: #0d9488;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --nav-height: 64px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== AMBIENT GLOW ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(5, 150, 105, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(56, 189, 248, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: var(--nav-height);
+            background: var(--bg-nav);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            transition: var(--transition);
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-logo:hover { color: var(--white); }
+        .nav-logo-mark {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--emerald-dark), var(--teal-dark));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 0.65rem; color: var(--white);
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== NAV LINKS WITH DROPDOWN ===== */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+        }
+        .nav-item {
+            position: relative;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .nav-link .arrow {
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+            margin-left: 2px;
+        }
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* ===== DROPDOWN MENU ===== */
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 260px;
+            background: var(--bg-dropdown);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+            transform: translateX(-50%) translateY(8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+        }
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+        .dropdown-icon {
+            width: 32px; height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .dropdown-icon.green { background: rgba(52, 211, 153, 0.12); }
+        .dropdown-icon.blue { background: rgba(56, 189, 248, 0.12); }
+        .dropdown-icon.amber { background: rgba(251, 191, 36, 0.12); }
+        .dropdown-icon.rose { background: rgba(251, 113, 133, 0.12); }
+        .dropdown-icon.violet { background: rgba(167, 139, 250, 0.12); }
+        .dropdown-text {
+            display: flex; flex-direction: column;
+        }
+        .dropdown-label {
+            font-weight: 600; color: var(--text);
+            font-size: 0.85rem;
+        }
+        .dropdown-desc {
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            margin-top: 1px;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 6px 8px;
+        }
+
+        /* ===== NAV CTA ===== */
+        .nav-cta {
+            padding: 9px 22px;
+            border-radius: 100px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--emerald-dark), var(--teal-dark));
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 12px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.25);
+        }
+        .nav-cta:hover {
+            box-shadow: 0 6px 25px rgba(5, 150, 105, 0.4);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        /* ===== MOBILE HAMBURGER ===== */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav-hamburger span {
+            width: 22px; height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mob-nav {
+            display: none;
+            position: fixed;
+            top: var(--nav-height); left: 0;
+            width: 100%;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column;
+            padding: 12px 24px;
+            gap: 4px;
+            z-index: 999;
+            max-height: calc(100vh - var(--nav-height));
+            overflow-y: auto;
+        }
+        .mob-nav a {
+            display: block; padding: 14px 16px;
+            color: var(--text); text-decoration: none;
+            font-weight: 500; font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+        }
+        .mob-nav a:hover { background: rgba(255,255,255,0.06); }
+        .mob-nav .mob-sub {
+            padding-left: 24px; font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main { padding-top: var(--nav-height); position: relative; z-index: 1; }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 600px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 18px;
+            border-radius: 100px;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--emerald);
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+        .hero-badge-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--emerald);
+            animation: pulse 2s ease infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .hero h1 {
+            font-size: clamp(2.6rem, 5.5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.035em;
+            line-height: 1.08;
+            max-width: 860px;
+            margin: 0 auto 24px;
+            color: var(--white);
+        }
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--emerald), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 30px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: var(--transition);
+            text-decoration: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-pri {
+            background: linear-gradient(135deg, var(--emerald-dark), var(--teal-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+        }
+        .btn-pri:hover {
+            box-shadow: 0 8px 30px rgba(5, 150, 105, 0.45);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        .btn-out {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-light);
+        }
+        .btn-out:hover {
+            border-color: var(--text-secondary);
+            color: var(--white);
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* ===== WRAP ===== */
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+        .wrap-sm { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+        /* ===== SECTION ===== */
+        .section { padding: 80px 0; }
+        .section-sm { padding: 56px 0; }
+        .section-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--emerald);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .section > .wrap > h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+        .section > .wrap > .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 680px;
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        /* ===== KPI DASHBOARD STRIP ===== */
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 0;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 28px 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .kpi-card.green::before { background: linear-gradient(90deg, var(--emerald), var(--teal)); }
+        .kpi-card.amber::before { background: linear-gradient(90deg, var(--amber-dark), var(--amber)); }
+        .kpi-card.blue::before { background: linear-gradient(90deg, var(--sky-dark), var(--sky)); }
+        .kpi-card.rose::before { background: linear-gradient(90deg, var(--rose-dark), var(--rose)); }
+        .kpi-card.violet::before { background: linear-gradient(90deg, var(--violet-dark), var(--violet)); }
+        .kpi-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .kpi-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .kpi-value {
+            font-family: var(--mono);
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+        .kpi-value.green { color: var(--emerald); }
+        .kpi-value.amber { color: var(--amber); }
+        .kpi-value.blue { color: var(--sky); }
+        .kpi-value.rose { color: var(--rose); }
+        .kpi-value.violet { color: var(--violet); }
+        .kpi-change {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .kpi-change.up { color: var(--emerald); }
+        .kpi-change.down { color: var(--rose); }
+
+        /* ===== CARD GRIDS ===== */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        /* ===== DASHBOARD CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .card-icon { font-size: 2rem; margin-bottom: 16px; }
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            flex: 1;
+        }
+        .card-tag {
+            display: inline-block;
+            margin-top: 16px;
+            align-self: flex-start;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .card-tag.gr { background: rgba(52,211,153,0.12); color: var(--emerald); }
+        .card-tag.bl { background: rgba(56,189,248,0.12); color: var(--sky); }
+        .card-tag.am { background: rgba(251,191,36,0.12); color: var(--amber); }
+        .card-tag.ro { background: rgba(251,113,133,0.12); color: var(--rose); }
+        .card-tag.vi { background: rgba(167,139,250,0.12); color: var(--violet); }
+
+        /* ===== CARD LINK (clickable cards) ===== */
+        .card-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 28px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+        }
+        .card-link:hover {
+            border-color: var(--emerald-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            color: var(--text);
+        }
+        .card-link h3 { color: var(--white); }
+        .card-link .card-arrow {
+            position: absolute;
+            bottom: 24px; right: 24px;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+        .card-link:hover .card-arrow {
+            background: var(--emerald-dark);
+            color: var(--white);
+        }
+
+        /* ===== BAR CHART ===== */
+        .bar-chart { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+        .bar-row { display: flex; align-items: center; gap: 14px; }
+        .bar-label {
+            width: 130px;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-align: right;
+            flex-shrink: 0;
+            font-weight: 500;
+        }
+        .bar-track {
+            flex: 1;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--white);
+            min-width: fit-content;
+        }
+        .bar-fill.emerald { background: linear-gradient(90deg, var(--emerald-dark), var(--emerald)); }
+        .bar-fill.sky { background: linear-gradient(90deg, var(--sky-dark), var(--sky)); }
+        .bar-fill.amber { background: linear-gradient(90deg, var(--amber-dark), var(--amber)); }
+        .bar-fill.rose { background: linear-gradient(90deg, var(--rose-dark), var(--rose)); }
+        .bar-fill.teal { background: linear-gradient(90deg, var(--teal-dark), var(--teal)); }
+        .bar-value {
+            width: 90px;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text);
+            font-weight: 600;
+            flex-shrink: 0;
+            text-align: left;
+        }
+
+        /* ===== FULL-WIDE CARD ===== */
+        .card-full {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: var(--transition);
+        }
+        .card-full:hover {
+            border-color: var(--border-light);
+        }
+        .card-full-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ===== TABLE ===== */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            max-height: 520px;
+            overflow-y: auto;
+        }
+        .table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 640px;
+        }
+        .table-wrapper thead {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .table-wrapper th {
+            background: #1e293b;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+        }
+        .table-wrapper td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .table-wrapper tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .table-wrapper .num {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        /* ===== HIGHLIGHT BOX ===== */
+        .highlight-box {
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        .highlight-box.teal {
+            background: rgba(52, 211, 153, 0.06);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            color: var(--emerald);
+        }
+        .highlight-box.blue {
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--sky);
+        }
+        .highlight-box.crisis {
+            background: rgba(251, 113, 133, 0.06);
+            border: 1px solid rgba(251, 113, 133, 0.2);
+            color: var(--rose);
+        }
+        .highlight-box strong { color: var(--white); }
+
+        /* ===== CONTACT GRID ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .contact-card:hover {
+            border-color: var(--emerald-dark);
+            transform: translateY(-2px);
+        }
+        .contact-icon {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 4px;
+        }
+        .contact-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            word-break: break-all;
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta {
+            text-align: center;
+            padding: 72px 48px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%; transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta h2 { margin-bottom: 16px; color: var(--white); }
+        .cta p {
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 32px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 56px 0 36px;
+            margin-top: 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+        .footer-brand p {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+        .footer-col h5 {
+            color: var(--white);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 18px;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            transition: color 0.15s;
+        }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bot {
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+        }
+        .footer-bot a { color: var(--text-tertiary); text-decoration: none; }
+        .footer-bot a:hover { color: var(--white); }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== KPI CARD CLICKABLE ===== */
+        .kpi-card { cursor: pointer; }
+        .kpi-card:hover .kpi-change { color: var(--emerald); }
+
+        /* ===== MODAL & POPUP ===== */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl); padding: 0; max-width: 560px; width: 90%;
+            max-height: 85vh; overflow-y: auto; transform: translateY(20px) scale(0.97);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+        .modal-overlay.active .modal { transform: translateY(0) scale(1); }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px 16px; border-bottom: 1px solid var(--border); }
+        .modal-header h3 { font-size: 1.15rem; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+        .modal-close { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.06); border: none; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: var(--transition); }
+        .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+        .modal-body { padding: 24px 28px 28px; }
+        .modal-body .modal-price { font-family: var(--mono); font-size: 2.4rem; font-weight: 800; color: var(--amber); margin-bottom: 4px; }
+        .modal-body .modal-period { font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 20px; }
+        .modal-body .modal-features { list-style: none; margin-bottom: 24px; }
+        .modal-body .modal-features li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
+        .modal-body .modal-features li:last-child { border-bottom: none; }
+        .modal-body .modal-features li .feat-check { color: var(--emerald); font-weight: 700; }
+
+        /* ===== ICON POPUP ===== */
+        .icon-popup-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+        }
+        .icon-popup-overlay.active { opacity: 1; visibility: visible; }
+        .icon-popup {
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl); padding: 32px; max-width: 480px; width: 90%;
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6); text-align: center;
+        }
+        .icon-popup-overlay.active .icon-popup { transform: translateY(0) scale(1); }
+        .icon-popup .popup-icon { font-size: 3rem; margin-bottom: 16px; }
+        .icon-popup h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+        .icon-popup p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+            .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-left { gap: 24px; }
+        }
+        @media (max-width: 768px) {
+            .nav-left .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .nav-hamburger { display: flex; }
+            .hero { padding: 80px 0 60px; }
+            .kpi-strip, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .section { padding: 48px 0; }
+            .nav { padding: 0 16px; }
+            .wrap { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav">
+        <div class="nav-left">
+            <a href="#home" class="nav-logo">
+                <span class="nav-logo-mark">NB</span>
+                NAPELL BIO
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link">
+                        Data Dashboard
+                        <span class="arrow">&#9660;</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#home" class="dropdown-item">
+                            <span class="dropdown-icon green">&#127775;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Overview</span>
+                                <span class="dropdown-desc">Global emissions snapshot</span>
+                            </span>
+                        </a>
+                        <a href="#carbon" class="dropdown-item">
+                            <span class="dropdown-icon amber">&#127757;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Carbon Comparison</span>
+                                <span class="dropdown-desc">Coffee vs. nations</span>
+                            </span>
+                        </a>
+                        <a href="#reduction" class="dropdown-item">
+                            <span class="dropdown-icon blue">&#128200;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Reduction Potential</span>
+                                <span class="dropdown-desc">Full-chain analysis</span>
+                            </span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#percapita" class="dropdown-item">
+                            <span class="dropdown-icon violet">&#128176;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Per Capita Impact</span>
+                                <span class="dropdown-desc">Individual contribution</span>
+                            </span>
+                        </a>
+                        <a href="#water" class="dropdown-item">
+                            <span class="dropdown-icon rose">&#128167;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Water Conservation</span>
+                                <span class="dropdown-desc">Saving billions of liters</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Ecosystem
+                        <span class="arrow">&#9660;</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="life/index.html" class="dropdown-item">
+                            <span class="dropdown-icon green">&#127793;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Napell Life</span>
+                                <span class="dropdown-desc">Sound-Grown Coffee</span>
+                            </span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="life/soundscapes/index.html" class="dropdown-item">
+                            <span class="dropdown-icon amber">&#127925;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Soundscapes</span>
+                                <span class="dropdown-desc">Acoustic environments</span>
+                            </span>
+                        </a>
+                        <a href="life/music-platform/index.html" class="dropdown-item">
+                            <span class="dropdown-icon blue">&#127911;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Music Platform</span>
+                                <span class="dropdown-desc">Stream protocols</span>
+                            </span>
+                        </a>
+                        <a href="life/device-gateway/index.html" class="dropdown-item">
+                            <span class="dropdown-icon violet">&#9881;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Device Gateway</span>
+                                <span class="dropdown-desc">IoT controllers</span>
+                            </span>
+                        </a>
+                        <a href="life/api/index.html" class="dropdown-item">
+                            <span class="dropdown-icon rose">&lt;/&gt;</span>
+                            <span class="dropdown-text">
+                                <span class="dropdown-label">Developer API</span>
+                                <span class="dropdown-desc">RESTful &amp; WebSocket</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#countries" class="nav-link">Countries Data</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#vision2050" class="nav-link">2050 Vision</a>
+                </li>
+                <li class="nav-item">
+                    <a href="life/contact/index.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <a href="life/get-started/index.html" class="nav-cta">Get in Touch</a>
+        <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <nav class="mob-nav" id="mobNav">
+        <a href="#home">Home</a>
+        <a href="#home">Dashboard &mdash; Overview</a>
+        <a href="#carbon">Dashboard &mdash; Carbon</a>
+        <a href="#reduction">Dashboard &mdash; Reduction</a>
+        <a href="#percapita">Dashboard &mdash; Per Capita</a>
+        <a href="#water">Dashboard &mdash; Water</a>
+        <a href="life/index.html">Napell Life</a>
+        <a href="life/soundscapes/index.html">Soundscapes</a>
+        <a href="life/music-platform/index.html">Music Platform</a>
+        <a href="life/device-gateway/index.html">Device Gateway</a>
+        <a href="life/api/index.html">Developer API</a>
+        <a href="life/research/index.html">Research</a>
+        <a href="life/pricing/index.html">Pricing</a>
+        <a href="life/community/index.html">Community</a>
+        <a href="life/contact/index.html">Contact</a>
+        <a href="#countries">Countries Data</a>
+        <a href="#vision2050">2050 Vision</a>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main">
+
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="home">
+            <div class="wrap-sm">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Backed by EDGAR 2022 &middot; Peer-Reviewed Research
+                </div>
+                <h1>Redefining Coffee's Carbon Footprint with <em>Tissue Culture &amp; Aeroponics</em></h1>
+                <p>NAPELL BIO uses tissue culture and aeroponic growing technology to reshape the global coffee supply chain &mdash; cutting emissions by up to <strong style="color:var(--emerald);">67%</strong> and reducing water use by <strong style="color:var(--sky);">95%+.</strong></p>
+                <div class="hero-actions">
+                    <a href="#dashboard" class="btn btn-pri">Explore the Data</a>
+                    <a href="life/index.html" class="btn btn-out">Napell Life &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== KPI DASHBOARD STRIP ========== -->
+        <section class="section-sm" id="dashboard">
+            <div class="wrap">
+                <div class="section-label">Global Coffee Industry &mdash; Carbon Emissions</div>
+                <h2>At a Glance</h2>
+                <p class="section-desc">The global coffee industry generates between 0.33 &ndash; 1.25 billion tonnes of CO&#x2082;e annually &mdash; equivalent to the entire carbon footprint of a mid-sized developed nation.</p>
+                <div class="kpi-strip">
+                    <div class="kpi-card green">
+                        <div class="kpi-label">Annual Carbon Emissions Range</div>
+                        <div class="kpi-value">0.33&ndash;1.25</div>
+                        <div class="kpi-change up">&#8593; Billion tonnes CO&#x2082;e / year</div>
+                    </div>
+                    <div class="kpi-card amber">
+                        <div class="kpi-label">Daily Emissions</div>
+                        <div class="kpi-value amber">164&ndash;342</div>
+                        <div class="kpi-change up">&#8593; Million tonnes CO&#x2082;e / day</div>
+                    </div>
+                    <div class="kpi-card blue">
+                        <div class="kpi-label">Farming's Share</div>
+                        <div class="kpi-value blue">40%&ndash;80%</div>
+                        <div class="kpi-change">Largest emission source</div>
+                    </div>
+                    <div class="kpi-card green">
+                        <div class="kpi-label">Reduction Potential</div>
+                        <div class="kpi-value green">~67%</div>
+                        <div class="kpi-change up">&#8595; With full-chain innovation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SUPPLY CHAIN BREAKDOWN ========== -->
+        <section class="section" style="padding-top:0;">
+            <div class="wrap">
+                <div class="card-full">
+                    <div class="card-full-title">&#128202; Supply Chain Emission Breakdown (Median Scenario: 45M tonnes/year)</div>
+                    <div class="bar-chart">
+                        <div class="bar-row">
+                            <span class="bar-label">Farming &amp; Processing</span>
+                            <div class="bar-track"><div class="bar-fill emerald" style="width:60%">60%</div></div>
+                            <span class="bar-value">27M tonnes</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Packaging / Retail / Consumer</span>
+                            <div class="bar-track"><div class="bar-fill sky" style="width:15%">15%</div></div>
+                            <span class="bar-value">6.75M tonnes</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Other (Retail Outlets, etc.)</span>
+                            <div class="bar-track"><div class="bar-fill amber" style="width:19.5%">19.5%</div></div>
+                            <span class="bar-value">8.77M tonnes</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Roasting</span>
+                            <div class="bar-track"><div class="bar-fill rose" style="width:4%">4%</div></div>
+                            <span class="bar-value">1.8M tonnes</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">Logistics &amp; Transport</span>
+                            <div class="bar-track"><div class="bar-fill teal" style="width:1.5%">1.5%</div></div>
+                            <span class="bar-value">0.68M tonnes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CARBON COMPARISON ========== -->
+        <section class="section" id="carbon">
+            <div class="wrap">
+                <div class="section-label">Carbon Footprint Comparison</div>
+                <h2>Coffee Industry Emissions &asymp; A Mid-Sized Nation</h2>
+                <p class="section-desc">The global coffee supply chain accounts for roughly 1%&ndash;3% of total global GHG emissions &mdash; comparable to the annual output of entire countries.</p>
+                <div class="grid-3 fade-in">
+                    <div class="card">
+                        <div class="card-icon">&#127466;&#127480;</div>
+                        <h3>Lower Bound (0.33B tonnes)</h3>
+                        <p>Equivalent to the annual emissions of Sweden or Denmark.</p>
+                        <span class="card-tag gr">Sweden / Denmark</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#127468;&#127463;</div>
+                        <h3>Mid-Range (0.60&ndash;0.80B tonnes)</h3>
+                        <p>Comparable to Finland, Ireland, or Norway combined.</p>
+                        <span class="card-tag bl">Finland / Ireland / Norway</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#127760;</div>
+                        <h3>Upper Bound (1.25B tonnes)</h3>
+                        <p>Exceeds the combined emissions of 116+ individual nations &mdash; more than half the countries on Earth.</p>
+                        <span class="card-tag ro">116+ Nations</span>
+                    </div>
+                </div>
+                <div class="highlight-box teal" style="margin-top:32px;">
+                    &#128161; At the highest estimate (1.25 billion tonnes), the global coffee industry&rsquo;s carbon footprint exceeds that of <strong>116 individual countries</strong>. A single agricultural commodity out-emits over half the nations on the planet.
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== REDUCTION POTENTIAL ========== -->
+        <section class="section" id="reduction">
+            <div class="wrap">
+                <div class="section-label">Innovation &amp; Technology</div>
+                <h2>Full-Chain Carbon Reduction Analysis</h2>
+                <p class="section-desc">With tissue culture + aeroponics + clean energy + local consumption, we model the reduction potential across every stage of the supply chain.</p>
+                <div class="grid-3 fade-in">
+                    <div class="card">
+                        <div class="kpi-label">Farming Reduction Rate</div>
+                        <div class="kpi-value green" style="font-size:2.6rem;">80%</div>
+                        <p>Tissue culture + aeroponics + solar-powered operations eliminate 21.6M tonnes.</p>
+                        <span class="card-tag gr">21.6M tonnes saved</span>
+                    </div>
+                    <div class="card">
+                        <div class="kpi-label">Packaging &amp; Consumer</div>
+                        <div class="kpi-value" style="font-size:2.6rem;">90%</div>
+                        <p>Zero-packaging + root-stem cups + coffee waste composting closed loop.</p>
+                        <span class="card-tag bl">6.08M tonnes saved</span>
+                    </div>
+                    <div class="card">
+                        <div class="kpi-label">Logistics &amp; Transport</div>
+                        <div class="kpi-value amber" style="font-size:2.6rem;">90%</div>
+                        <p>Local production eliminates intercontinental shipping + electric fleet.</p>
+                        <span class="card-tag am">0.61M tonnes saved</span>
+                    </div>
+                    <div class="card">
+                        <div class="kpi-label">Roasting</div>
+                        <div class="kpi-value rose" style="font-size:2.6rem;">100%</div>
+                        <p>No roasting needed + cold-extraction process + zero-carbon energy loop.</p>
+                        <span class="card-tag ro">1.8M tonnes saved</span>
+                    </div>
+                    <div class="card">
+                        <div class="kpi-label">Total Reduction</div>
+                        <div class="kpi-value blue" style="font-size:2.6rem;">30.09M</div>
+                        <p>Equivalent to 67% of baseline supply chain emissions.</p>
+                        <span class="card-tag bl">67% Reduction</span>
+                    </div>
+                    <div class="card">
+                        <div class="kpi-label">Including Auxiliary Sectors</div>
+                        <div class="kpi-value green" style="font-size:2.6rem;">35&ndash;38M</div>
+                        <p>Total reduction rises to 78%&ndash;84% &mdash; near Ireland&rsquo;s annual total.</p>
+                        <span class="card-tag gr">78%&ndash;84% Reduction</span>
+                    </div>
+                </div>
+                <!-- Reduction Table -->
+                <div class="card-full" style="margin-top:32px;">
+                    <div class="card-full-title">&#128203; Detailed Reduction Breakdown (Median: 45M tonnes baseline)</div>
+                    <div class="table-wrapper" style="max-height:380px; border:none;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Supply Chain Stage</th>
+                                    <th class="num">Baseline (M tonnes)</th>
+                                    <th class="num">Reduction Rate</th>
+                                    <th class="num">Reduction (M tonnes)</th>
+                                    <th class="num">Remaining (M tonnes)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Farming &amp; Processing</td><td class="num">27.0</td><td class="num">80%</td><td class="num" style="color:var(--emerald);">21.6</td><td class="num">5.4</td></tr>
+                                <tr><td>Packaging / Retail / Consumer</td><td class="num">6.75</td><td class="num">90%</td><td class="num" style="color:var(--emerald);">6.08</td><td class="num">0.68</td></tr>
+                                <tr><td>Logistics &amp; Transport</td><td class="num">0.68</td><td class="num">90%</td><td class="num" style="color:var(--emerald);">0.61</td><td class="num">0.07</td></tr>
+                                <tr><td>Roasting</td><td class="num">1.80</td><td class="num">100%</td><td class="num" style="color:var(--rose);">1.80</td><td class="num">0</td></tr>
+                                <tr><td>Other (Retail / Waste)</td><td class="num">8.77</td><td class="num">0%</td><td class="num">0</td><td class="num">8.77</td></tr>
+                                <tr style="font-weight:700;border-top:2px solid var(--border-light);"><td>Total</td><td class="num">45.0</td><td class="num">&mdash;</td><td class="num" style="color:var(--emerald);">30.09</td><td class="num">14.91</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PER CAPITA ========== -->
+        <section class="section" id="percapita">
+            <div class="wrap">
+                <div class="section-label">Individual Impact</div>
+                <h2>Your Daily Carbon Reduction</h2>
+                <p class="section-desc">With 2 billion global coffee consumers, annual reductions of 36M tonnes (including auxiliary sectors) translate to tangible daily impact for every person.</p>
+                <div class="kpi-strip fade-in">
+                    <div class="kpi-card green">
+                        <div class="kpi-label">Daily Reduction Per Person</div>
+                        <div class="kpi-value green">~49g</div>
+                        <div class="kpi-change up">CO&#x2082;e / person / day</div>
+                    </div>
+                    <div class="kpi-card blue">
+                        <div class="kpi-label">Core Chain Only (30M tonnes)</div>
+                        <div class="kpi-value blue">~41g</div>
+                        <div class="kpi-change">CO&#x2082;e / person / day</div>
+                    </div>
+                    <div class="kpi-card amber">
+                        <div class="kpi-label">Carbon Credit Value</div>
+                        <div class="kpi-value amber">$33&ndash;42M</div>
+                        <div class="kpi-change up">USD per day at market rates</div>
+                    </div>
+                    <div class="kpi-card violet">
+                        <div class="kpi-label">Equivalent</div>
+                        <div class="kpi-value violet">15M Cars</div>
+                        <div class="kpi-change down">Removed from roads annually</div>
+                    </div>
+                </div>
+                <div class="card-full" style="margin-top:32px;">
+                    <div class="card-full-title">&#127963; What 36M Tonnes of Annual Reduction Looks Like</div>
+                    <div class="grid-2" style="margin-top:12px;">
+                        <div class="card">
+                            <div class="card-icon">&#128663;</div>
+                            <h3>Remove 15M Cars</h3>
+                            <p>Equivalent to taking ~15 million fossil-fuel cars off the road for a full year (2.4 tonnes CO&#x2082; each).</p>
+                            <span class="card-tag bl">Transportation</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">&#9992;&#65039;</div>
+                            <h3>Cancel 60M Transatlantic Flights</h3>
+                            <p>Equivalent to ~60 million NYC&ndash;London economy class round-trips (0.6 tonnes CO&#x2082; per seat).</p>
+                            <span class="card-tag am">Aviation</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">&#127981;</div>
+                            <h3>Shut Down 12 Coal Plants</h3>
+                            <p>Equivalent to permanently closing 12 &times; 500MW coal-fired power plants (300M tonnes/year each).</p>
+                            <span class="card-tag ro">Energy</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">&#127795;</div>
+                            <h3>Plant 360M Mature Trees</h3>
+                            <p>Equivalent to the annual carbon absorption capacity of 360 million mature trees (~10kg/tree/year).</p>
+                            <span class="card-tag gr">Forestry</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 2050 VISION ========== -->
+        <section class="section" id="vision2050">
+            <div class="wrap">
+                <div class="section-label">2050 Vision</div>
+                <h2>The Ecological Landscape of Tomorrow</h2>
+                <p class="section-desc">By 2050, widespread adoption of innovative coffee technology will deliver measurable ecological restoration &mdash; clearer skies, healthier biodiversity, and dramatically reduced water stress.</p>
+                <div class="grid-3 fade-in">
+                    <div class="card">
+                        <div class="card-icon">&#9728;&#65039;</div>
+                        <h3>Clearer Skies</h3>
+                        <p>Drastic reduction in NOx, SOx, and black carbon from ending agricultural slash-and-burn. Haze events decline measurably across equatorial regions.</p>
+                        <span class="card-tag bl">Visibility &#8593;</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#127793;</div>
+                        <h3>Biodiversity Recovery</h3>
+                        <p>Zero-deforestation farming restores millions of hectares of rainforest. Pollinator populations recover as chemical runoff is eliminated entirely.</p>
+                        <span class="card-tag gr">Diversity &#8593;</span>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">&#128167;</div>
+                        <h3>Water Stress Relief</h3>
+                        <p>Closed-loop aeroponics saves 95%+ of water. Hundreds of billions of cubic meters of virtual water preserved in natural ecosystems each year.</p>
+                        <span class="card-tag vi">Water saved 95%+</span>
+                    </div>
+                </div>
+                <div class="highlight-box blue" style="margin-top:32px;">
+                    &#127754; <strong>Key Data:</strong> Traditional coffee farming consumes ~28,000 liters of water per kg of green beans. NAPELL BIO&rsquo;s closed aeroponic system reduces this to under 1,400 liters/kg &mdash; a <strong>95%+ reduction</strong>. By 2050, this saves <strong>hundreds of billions of cubic meters</strong> of virtual water annually.
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COUNTRIES DATA ========== -->
+        <section class="section" id="countries">
+            <div class="wrap">
+                <div class="section-label">EDGAR 2022 Dataset</div>
+                <h2>116 Nations Below 1.25B Tonnes Threshold</h2>
+                <p class="section-desc">At the coffee industry&rsquo;s upper-bound estimate, the following 116 countries each emit less than the global coffee supply chain&rsquo;s total annual output. Source: EDGAR Database, 2022.</p>
+                <div class="table-wrapper fade-in">
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>Country / Region</th><th class="num">2022 Emissions (tonnes)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Czech Republic</td><td class="num">99,533,000</td></tr>
+                            <tr><td>2</td><td>Bangladesh</td><td class="num">96,180,000</td></tr>
+                            <tr><td>3</td><td>Kuwait</td><td class="num">92,582,000</td></tr>
+                            <tr><td>4</td><td>Chile</td><td class="num">88,333,000</td></tr>
+                            <tr><td>5</td><td>Colombia</td><td class="num">81,007,000</td></tr>
+                            <tr><td>6</td><td>Oman</td><td class="num">76,321,000</td></tr>
+                            <tr><td>7</td><td>Greece</td><td class="num">70,163,000</td></tr>
+                            <tr><td>8</td><td>Romania</td><td class="num">68,746,000</td></tr>
+                            <tr><td>9</td><td>Austria</td><td class="num">65,540,000</td></tr>
+                            <tr><td>10</td><td>Israel</td><td class="num">61,092,000</td></tr>
+                            <tr><td>11</td><td>Morocco</td><td class="num">60,200,000</td></tr>
+                            <tr><td>12</td><td>Peru</td><td class="num">54,996,000</td></tr>
+                            <tr><td>13</td><td>Belarus</td><td class="num">54,695,000</td></tr>
+                            <tr><td>14</td><td>Portugal</td><td class="num">50,370,000</td></tr>
+                            <tr><td>15</td><td>Hungary</td><td class="num">48,589,000</td></tr>
+                            <tr><td>16</td><td>Sweden</td><td class="num">48,144,000</td></tr>
+                            <tr><td>17</td><td>Serbia</td><td class="num">47,735,000</td></tr>
+                            <tr><td>18</td><td>Bahrain</td><td class="num">43,112,000</td></tr>
+                            <tr><td>19</td><td>Finland</td><td class="num">41,996,000</td></tr>
+                            <tr><td>20</td><td>Laos</td><td class="num">41,000,000</td></tr>
+                            <tr><td>21</td><td>Ecuador</td><td class="num">40,000,000</td></tr>
+                            <tr><td>22</td><td>Switzerland</td><td class="num">38,739,000</td></tr>
+                            <tr><td>23</td><td>Azerbaijan</td><td class="num">38,000,000</td></tr>
+                            <tr><td>24</td><td>New Zealand</td><td class="num">37,000,000</td></tr>
+                            <tr><td>25</td><td>Denmark</td><td class="num">36,000,000</td></tr>
+                            <tr><td>26</td><td>Ireland</td><td class="num">35,000,000</td></tr>
+                            <tr><td>27</td><td>Norway</td><td class="num">34,000,000</td></tr>
+                            <tr><td>28</td><td>Slovakia</td><td class="num">32,000,000</td></tr>
+                            <tr><td>29</td><td>Myanmar</td><td class="num">31,848,000</td></tr>
+                            <tr><td>30</td><td>Trinidad &amp; Tobago</td><td class="num">30,000,000</td></tr>
+                            <tr><td>31</td><td>Croatia</td><td class="num">29,000,000</td></tr>
+                            <tr><td>32</td><td>Bulgaria</td><td class="num">50,103,300</td></tr>
+                            <tr><td>33</td><td>Tunisia</td><td class="num">28,000,000</td></tr>
+                            <tr><td>34</td><td>Lebanon</td><td class="num">27,000,000</td></tr>
+                            <tr><td>35</td><td>Yemen</td><td class="num">26,000,000</td></tr>
+                            <tr><td>36</td><td>Slovenia</td><td class="num">25,000,000</td></tr>
+                            <tr><td>37</td><td>Lithuania</td><td class="num">24,000,000</td></tr>
+                            <tr><td>38</td><td>Jordan</td><td class="num">23,000,000</td></tr>
+                            <tr><td>39</td><td>Guatemala</td><td class="num">22,000,000</td></tr>
+                            <tr><td>40</td><td>Sri Lanka</td><td class="num">21,000,000</td></tr>
+                            <tr><td>41</td><td>Estonia</td><td class="num">20,000,000</td></tr>
+                            <tr><td>42</td><td>Luxembourg</td><td class="num">19,000,000</td></tr>
+                            <tr><td>43</td><td>Costa Rica</td><td class="num">18,000,000</td></tr>
+                            <tr><td>44</td><td>Panama</td><td class="num">17,000,000</td></tr>
+                            <tr><td>45</td><td>Uruguay</td><td class="num">16,000,000</td></tr>
+                            <tr><td>46</td><td>Paraguay</td><td class="num">15,000,000</td></tr>
+                            <tr><td>47</td><td>Latvia</td><td class="num">14,000,000</td></tr>
+                            <tr><td>48</td><td>Cambodia</td><td class="num">13,000,000</td></tr>
+                            <tr><td>49</td><td>Afghanistan</td><td class="num">12,000,000</td></tr>
+                            <tr><td>50</td><td>Nepal</td><td class="num">11,000,000</td></tr>
+                            <tr><td>51</td><td>Honduras</td><td class="num">10,000,000</td></tr>
+                            <tr><td>52</td><td>El Salvador</td><td class="num">9,000,000</td></tr>
+                            <tr><td>53</td><td>Nicaragua</td><td class="num">8,000,000</td></tr>
+                            <tr><td>54</td><td>Cyprus</td><td class="num">8,024,000</td></tr>
+                            <tr><td>55</td><td>Malta</td><td class="num">7,000,000</td></tr>
+                            <tr><td>56</td><td>Uganda</td><td class="num">6,000,000</td></tr>
+                            <tr><td>57</td><td>Brunei</td><td class="num">5,000,000</td></tr>
+                            <tr><td>58</td><td>Gabon</td><td class="num">4,000,000</td></tr>
+                            <tr><td>59</td><td>Albania</td><td class="num">3,000,000</td></tr>
+                            <tr><td>60</td><td>North Macedonia</td><td class="num">2,000,000</td></tr>
+                            <tr><td>61</td><td>Tajikistan</td><td class="num">1,500,000</td></tr>
+                            <tr><td>62</td><td>Kyrgyzstan</td><td class="num">1,400,000</td></tr>
+                            <tr><td>63</td><td>Armenia</td><td class="num">1,300,000</td></tr>
+                            <tr><td>64</td><td>Georgia</td><td class="num">1,200,000</td></tr>
+                            <tr><td>65</td><td>Moldova</td><td class="num">1,100,000</td></tr>
+                            <tr><td>66</td><td>Iceland</td><td class="num">1,000,000</td></tr>
+                            <tr><td>67</td><td>Bhutan</td><td class="num">934,000</td></tr>
+                            <tr><td>68</td><td>Sierra Leone</td><td class="num">899,000</td></tr>
+                            <tr><td>69</td><td>Somalia</td><td class="num">882,000</td></tr>
+                            <tr><td>70</td><td>Faroe Islands</td><td class="num">870,000</td></tr>
+                            <tr><td>71</td><td>Cayman Islands</td><td class="num">808,000</td></tr>
+                            <tr><td>72</td><td>Eritrea</td><td class="num">798,000</td></tr>
+                            <tr><td>73</td><td>Bermuda</td><td class="num">796,000</td></tr>
+                            <tr><td>74</td><td>Lesotho</td><td class="num">736,000</td></tr>
+                            <tr><td>75</td><td>Antigua &amp; Barbuda</td><td class="num">729,000</td></tr>
+                            <tr><td>76</td><td>Burundi</td><td class="num">715,000</td></tr>
+                            <tr><td>77</td><td>Saint Lucia</td><td class="num">659,000</td></tr>
+                            <tr><td>78</td><td>Djibouti</td><td class="num">610,000</td></tr>
+                            <tr><td>79</td><td>Gambia</td><td class="num">606,000</td></tr>
+                            <tr><td>80</td><td>Greenland</td><td class="num">605,000</td></tr>
+                            <tr><td>81</td><td>Belize</td><td class="num">541,000</td></tr>
+                            <tr><td>82</td><td>Timor-Leste</td><td class="num">538,000</td></tr>
+                            <tr><td>83</td><td>American Samoa</td><td class="num">355,000</td></tr>
+                            <tr><td>84</td><td>Samoa</td><td class="num">355,000</td></tr>
+                            <tr><td>85</td><td>Guinea-Bissau</td><td class="num">342,000</td></tr>
+                            <tr><td>86</td><td>Solomon Islands</td><td class="num">333,000</td></tr>
+                            <tr><td>87</td><td>Comoros</td><td class="num">326,000</td></tr>
+                            <tr><td>88</td><td>Grenada</td><td class="num">316,000</td></tr>
+                            <tr><td>89</td><td>Central African Republic</td><td class="num">285,000</td></tr>
+                            <tr><td>90</td><td>Saint Kitts &amp; Nevis</td><td class="num">268,000</td></tr>
+                            <tr><td>91</td><td>Turks &amp; Caicos Islands</td><td class="num">245,000</td></tr>
+                            <tr><td>92</td><td>Vanuatu</td><td class="num">225,000</td></tr>
+                            <tr><td>93</td><td>St. Vincent &amp; Grenadines</td><td class="num">202,000</td></tr>
+                            <tr><td>94</td><td>Dominica</td><td class="num">182,000</td></tr>
+                            <tr><td>95</td><td>S&atilde;o Tom&eacute; &amp; Pr&iacute;ncipe</td><td class="num">173,000</td></tr>
+                            <tr><td>96</td><td>British Virgin Islands</td><td class="num">173,000</td></tr>
+                            <tr><td>97</td><td>Tonga</td><td class="num">171,000</td></tr>
+                            <tr><td>98</td><td>Cook Islands</td><td class="num">114,000</td></tr>
+                            <tr><td>99</td><td>Saint Pierre &amp; Miquelon</td><td class="num">84,000</td></tr>
+                            <tr><td>100</td><td>Kiribati</td><td class="num">76,000</td></tr>
+                            <tr><td>101</td><td>Nauru</td><td class="num">66,000</td></tr>
+                            <tr><td>102</td><td>Falkland Islands</td><td class="num">46,000</td></tr>
+                            <tr><td>103</td><td>Montserrat</td><td class="num">33,000</td></tr>
+                            <tr><td>104</td><td>Saint Helena</td><td class="num">13,000</td></tr>
+                            <tr><td>105</td><td>Niue</td><td class="num">8,000</td></tr>
+                            <tr><td>106</td><td>Mongolia</td><td class="num">Not reported*</td></tr>
+                            <tr><td>107</td><td>Botswana</td><td class="num">Not reported*</td></tr>
+                            <tr><td>108</td><td>Ethiopia</td><td class="num">Not reported*</td></tr>
+                            <tr><td>109</td><td>Tanzania</td><td class="num">Not reported*</td></tr>
+                            <tr><td>110</td><td>Kenya</td><td class="num">Not reported*</td></tr>
+                            <tr><td>111</td><td>Ghana</td><td class="num">Not reported*</td></tr>
+                            <tr><td>112</td><td>C&ocirc;te d&rsquo;Ivoire</td><td class="num">Not reported*</td></tr>
+                            <tr><td>113</td><td>Cameroon</td><td class="num">Not reported*</td></tr>
+                            <tr><td>114</td><td>Senegal</td><td class="num">Not reported*</td></tr>
+                            <tr><td>115</td><td>Zambia</td><td class="num">Not reported*</td></tr>
+                            <tr><td>116</td><td>Zimbabwe</td><td class="num">Not reported*</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size:0.78rem;color:var(--text-tertiary);margin-top:12px;">* "Not reported" indicates the country is known to emit below 1.25B tonnes, but specific values were not listed in the EDGAR 2022 database. Total: 116 countries.</p>
+            </div>
+        </section>
+
+        <!-- ========== WATER CONSERVATION ========== -->
+        <section class="section" id="water">
+            <div class="wrap">
+                <div class="section-label">Water Conservation</div>
+                <h2>Saving Water That Saves Lives</h2>
+                <p class="section-desc">The billions of cubic meters saved through closed-loop aeroponics can be redirected to regions facing extreme water scarcity &mdash; transforming conservation into survival.</p>
+                <div class="kpi-strip fade-in">
+                    <div class="kpi-card blue">
+                        <div class="kpi-label">Global Water-Stressed Population</div>
+                        <div class="kpi-value blue">2.1&ndash;2.2B</div>
+                        <div class="kpi-change">Without safe drinking water</div>
+                    </div>
+                    <div class="kpi-card rose">
+                        <div class="kpi-label">Gaza: Extreme Crisis</div>
+                        <div class="kpi-value rose">2&ndash;15L</div>
+                        <div class="kpi-change down">Per person / per day</div>
+                    </div>
+                    <div class="kpi-card green">
+                        <div class="kpi-label">1kg Coffee Water Savings</div>
+                        <div class="kpi-value green">~26,600L</div>
+                        <div class="kpi-change up">&#8595; Sustains 1,773 people for a day</div>
+                    </div>
+                    <div class="kpi-card violet">
+                        <div class="kpi-label">Global Deficit</div>
+                        <div class="kpi-value violet">785M+</div>
+                        <div class="kpi-change">Lack basic drinking water</div>
+                    </div>
+                </div>
+                <div class="grid-2 fade-in" style="margin-top:32px;">
+                    <div class="highlight-box crisis">
+                        <strong>&#128680; Gaza Strip:</strong> Just a fraction of the water saved (~50 million cubic meters) could meet nearly all of Gaza&rsquo;s annual municipal water needs for 2+ million residents, dramatically reducing waterborne disease risk.
+                    </div>
+                    <div class="highlight-box blue">
+                        <strong>&#127758; Yemen &amp; Sub-Saharan Africa:</strong> The same water savings could provide safe drinking water for millions of displaced persons, supporting basic healthcare and agriculture while mitigating water-driven conflicts.
+                    </div>
+                    <div class="highlight-box teal">
+                        <strong>&#127470;&#127475; India:</strong> ~330 million people currently face drought. Innovative water conservation provides a critical alternative, preserving billions of cubic meters within the natural water cycle.
+                    </div>
+                    <div class="highlight-box blue">
+                        <strong>&#128167; Critical Watersheds:</strong> Ecological base flows in the Nile, Euphrates, and Jordan river systems can be maintained. This water remains in nature as <strong>"water for peace"</strong> &mdash; stabilizing fragile regions.
+                    </div>
+                </div>
+                <div class="highlight-box blue" style="margin-top:24px; text-align:center;">
+                    &#128142; <strong>Core Message:</strong> Over <strong>785 million people</strong> lack basic drinking water services. NAPELL BIO&rsquo;s innovation saves hundreds of billions of cubic meters annually &mdash; enough to fundamentally transform survival conditions for billions.
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CTA ========== -->
+        <section class="section-sm">
+            <div class="wrap">
+                <div class="cta">
+                    <h2>Ready to Build a Zero-Carbon Coffee Future?</h2>
+                    <p>Join the movement to reshape global coffee production. Whether you&rsquo;re an investor, researcher, or farming partner &mdash; let&rsquo;s connect.</p>
+                    <a href="#contact" class="btn btn-pri">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="section-label">Contact Us</div>
+                <h2>NAPELL BIO</h2>
+                <p class="section-desc">Pioneering carbon-neutral coffee technology. For partnerships, investment, or inquiries, reach out through any of the channels below.</p>
+                <div class="contact-grid fade-in">
+                    <div class="contact-card">
+                        <div class="contact-icon">&#128172;</div>
+                        <div class="contact-label">WhatsApp</div>
+                        <div class="contact-value">+852 9318 8252</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">&#128154;</div>
+                        <div class="contact-label">WeChat</div>
+                        <div class="contact-value">+86 15800 222338</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">&#9993;</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">erik.wong@napell.bio</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">&#127970;</div>
+                        <div class="contact-label">Company</div>
+                        <div class="contact-value">NAPELL BIO</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>NAPELL BIO</h3>
+                    <p>Pioneering tissue culture and aeroponic technology to eliminate carbon emissions from the global coffee supply chain. Backed by peer-reviewed science and EDGAR 2022 data.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Data</h5>
+                    <a href="#home">Overview Dashboard</a>
+                    <a href="#carbon">Carbon Comparison</a>
+                    <a href="#reduction">Reduction Analysis</a>
+                    <a href="#countries">Countries Data</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Ecosystem</h5>
+                    <a href="life/index.html">Napell Life</a>
+                    <a href="#water">Water Conservation</a>
+                    <a href="#vision2050">2050 Vision</a>
+                    <a href="#percapita">Per Capita Impact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Napell Life</h5>
+                    <a href="life/soundscapes/index.html">Soundscapes</a>
+                    <a href="life/music-platform/index.html">Music Platform</a>
+                    <a href="life/device-gateway/index.html">Device Gateway</a>
+                    <a href="life/api/index.html">Developer API</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="life/about/index.html">About Us</a>
+                    <a href="life/research/index.html">Research</a>
+                    <a href="life/pricing/index.html">Pricing</a>
+                    <a href="life/community/index.html">Community</a>
+                    <a href="life/contact/index.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bot">
+                <span>&copy; 2026 NAPELL BIO. All rights reserved.</span>
+                <span>Data: EDGAR 2022 &middot; Fairatmos &middot; Industry Reports</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ===== Mobile hamburger toggle =====
+        var hamburger = document.querySelector('.nav-hamburger');
+        var mobNav = document.getElementById('mobNav');
+        if (hamburger && mobNav) {
+            hamburger.addEventListener('click', function() {
+                var show = mobNav.style.display === 'flex';
+                mobNav.style.display = show ? 'none' : 'flex';
+            });
+        }
+
+        // ===== Active nav link on scroll =====
+        var navLinks = document.querySelectorAll('.nav-links .nav-link');
+        var sections = document.querySelectorAll('.section, .hero, .section-sm');
+
+        function updateActiveLink() {
+            var currentId = 'home';
+            var scrollPos = window.scrollY + 100;
+            sections.forEach(function(section) {
+                var top = section.offsetTop;
+                var bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos < bottom) {
+                    var id = section.getAttribute('id');
+                    if (id) currentId = id;
+                }
+            });
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                var href = link.getAttribute('href');
+                if (href === '#' + currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveLink, { passive: true });
+        updateActiveLink();
+
+        // ===== Smooth scroll =====
+        document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var href = this.getAttribute('href');
+                if (href === '#') return;
+                var targetId = href.substring(1);
+                var target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    var navHeight = document.querySelector('.nav').offsetHeight;
+                    var targetPos = target.offsetTop - navHeight;
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                    // Close mobile nav
+                    if (mobNav) mobNav.style.display = 'none';
+                }
+            });
+        });
+
+        // ===== Animate bar charts on scroll =====
+        var barFills = document.querySelectorAll('.bar-fill');
+        var barObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var bar = entry.target;
+                    var width = bar.style.width;
+                    bar.style.width = '0%';
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            bar.style.width = width;
+                        });
+                    });
+                    barObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+        barFills.forEach(function(bar) { barObserver.observe(bar); });
+
+        // ===== Fade-in on scroll =====
+        var fadeEls = document.querySelectorAll('.fade-in');
+        var fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+
+        // ===== Close mobile nav on link click =====
+        if (mobNav) {
+            mobNav.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    mobNav.style.display = 'none';
+                });
+            });
+        }
+
+        // ===== KPI card click popups =====
+        document.querySelectorAll('.kpi-card').forEach(function(card) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function() {
+                var label = card.querySelector('.kpi-label');
+                var value = card.querySelector('.kpi-value');
+                var change = card.querySelector('.kpi-change');
+                if (!label || !value) return;
+                var labTxt = label.textContent;
+                var valTxt = value.textContent;
+                var chgTxt = change ? change.textContent.replace(/[\r\n]/g,' ').trim() : '';
+                var icons = {'Annual':'📊','Daily':'📊','Farming':'🌱','Reduction':'✅','Global':'💧','Extreme':'🚨','Individual':'👥','Equivalent':'🚗'};
+                var icon = '📈';
+                Object.keys(icons).forEach(function(k) { if(labTxt.indexOf(k)>=0) icon = icons[k]; });
+                window.openIconPopup(icon, labTxt, valTxt + ' ' + chgTxt + '. Click to explore the full data dashboard.', 'View Dashboard', '#dashboard');
+            });
+        });
+
+        // ===== Icon Popup (global) =====
+        window.openIconPopup = function(icon, title, desc, linkText, linkHref) {
+            var overlay = document.getElementById('iconPopupOverlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'icon-popup-overlay';
+                overlay.id = 'iconPopupOverlay';
+                overlay.innerHTML = '<div class="icon-popup"><div class="popup-icon"></div><h3></h3><p></p><a class="btn btn-pri btn-sm" href="#"></a></div>';
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', function(e) { if(e.target===this) this.classList.remove('active'); });
+            }
+            overlay.querySelector('.popup-icon').textContent = icon;
+            overlay.querySelector('h3').textContent = title;
+            overlay.querySelector('p').textContent = desc;
+            var link = overlay.querySelector('a');
+            link.textContent = linkText || 'Learn More';
+            link.href = linkHref || '#';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeIconPopup = function() {
+            var overlay = document.getElementById('iconPopupOverlay');
+            if (overlay) { overlay.classList.remove('active'); }
+            document.body.style.overflow = '';
+        };
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') window.closeIconPopup();
+        });
+
+    })();
+    </script>
+
+    <!-- Icon Popup Overlay -->
+    <div class="icon-popup-overlay" id="iconPopupOverlay" onclick="if(event.target===this)window.closeIconPopup()">
+        <div class="icon-popup">
+            <div class="popup-icon" id="popupIcon"></div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupDesc"></p>
+            <a class="btn btn-pri btn-sm" id="popupLink" href="#">Learn More</a>
+        </div>
+    </div>
+
+</body>
+</html>
